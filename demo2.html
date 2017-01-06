@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="bootstrap.css">
+    <title>demo2</title>
+    <style>
+        .error{
+            border-color: #a10;
+        }
+    </style>
+</head>
+<body>
+    <div ng-app='MyApp'>
+        <form ng-controller='MyController' role='form' name='myForm'>
+            <div class='form-group'>
+                <label>用户名：</label>
+                <input name='userName' ng-class="{'error':myForm.userName.$invalid}" class=form-control type="number" ng-model='userName' required ng-minlength='4' ng-maxlength='8'>
+            </div>
+        </form>
+    </div>
+    <script src='angular.min.js'></script>
+    <script>
+        var app = angular.module('MyApp',[]);
+        app.controller('MyController',function($scope){
+
+        })
+    </script>
+</body>
+</html>
