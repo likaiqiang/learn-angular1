@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app='MyApp'>
+    <div ng-controller='ParentControler'>
+        <div ng-controller='ChildController'></div>
+    </div>
+    <script src='../angular.min.js'></script>
+    <script>
+        var app = angular.module('MyApp',[]);
+        app.controller('ParentControler',function($scope){
+            $scope.aString = 'scope string';
+            $scope.aNumber = 100;
+            $scope.anArray = [10,20,30];
+            $scope.anObject = {
+                "property1": "parent prop1",
+                "property2": "parent prop2"
+            };
+            $scope.aFunction = function(){
+                return 'parent output'
+            }
+        });
+        app.controller('ChildController',function($scope){
+            console.log($scope);
+            console.log($scope.anArray);
+        })
+    </script>
+</body>
+</html>

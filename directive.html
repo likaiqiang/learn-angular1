@@ -8,6 +8,8 @@
     <div ng-app='MyApp'>
         <div ng-controller='MyController'>
             <my-directive></my-directive>
+            <p my-title>我是p</p>
+            <p>{{b}}</p>
         </div>
     </div>
     <script src='angular.min.js'></script>
@@ -15,13 +17,23 @@
     <script>
         var app = angular.module('MyApp',[]);
         app.controller('MyController',function ($scope) {
-
+            $scope.linkHref='http://www.baidu.com';
+            $scope.linkText='百度一下';
+            $scope.a = 12;
         });
         app.directive('myDirective',function () {
             return {
                 restrict: 'E',
-                template: "<a href='http://www.baidu.com' target='_blank'>百度一下</a>",
+                template: "<a href={{linkHref}} target='_blank'>{{linkText}}</a>",
                 replace: true
+            }
+        });
+        app.directive('myTitle',function(){
+            return {
+                restrict: 'A',
+                controller: function ($scope, $element, $attrs) {
+                    console.log($scope);
+                }
             }
         })
     </script>
