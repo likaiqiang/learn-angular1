@@ -6,7 +6,7 @@
 </head>
 <body ng-app='MyApp'>
 <div ng-controller='ParentControler'>
-    <div child-scope my-url='http://www.baidu.com' my-link-text='百度一下,你就知道'></div>
+    <div child-scope my-url='http://www.baidu.com' my-link-text='点我，百度'></div>
 </div>
 <script src='../angular.min.js'></script>
 <script>
@@ -22,15 +22,19 @@
         $scope.aFunction = function(){
             return 'parent output'
         };
-        $scope.myUrl = 'http://www.baidu.com';
-        $scope.myLinkText = '百度一下，你就知道'
     });
     app.directive('childScope',function(){
         return {
             restrict: 'A',
-            template: "<a href='{{myUrl}}'>{{myLinkText}}</a>",
-            scope: true,
+            template: "<a href='{{myUrl}}'>{{myLinkText}}</a><span>{{aNumber}}</span>",
+            scope: {
+                myUrl: '@',
+                myLinkText: '@'
+            },
             controller: function($scope){
+                $scope.aNumber = 200;
+                $scope.anArray[0] = 111;
+                $scope.anObject.property1 = 'hello';
                 console.log($scope);
             }
         }
