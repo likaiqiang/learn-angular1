@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app='MyApp'>
+    <div ng-controller='MyController'>
+        <p ng-bind='arr'></p>
+        <button ng-click='changeArr()'>changeArr</button>
+        <button ng-click='changeItem()'>changeItem</button>
+    </div>
+    <script src='angular.min.js'></script>
+    <script>
+        var app = angular.module('MyApp',[]);
+        app.controller('MyController',function($scope){
+            $scope.arr = [1,2,3];
+            $scope.$watch('arr',function(newVal){
+                console.log(newVal);//加入第三个参数'true'后，虽然能检测到数组item的变化，但是不更新视图，vue里面有$set，不知道ng怎么解决
+            },true)
+            $scope.changeArr = function(){
+                $scope.arr = [10,20,30];
+            }
+            $scope.changeItem = function(){
+                $scope.arr[0] = 'hello';
+                console.log('changeItem:'+$scope.arr);
+            }
+        })
+    </script>
+</body>
+</html>

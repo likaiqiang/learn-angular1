@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app='MyApp'>
+<div ng-controller='MyController'>
+    <p>Tom:{{Tom.gender | formatGender }}</p>
+    <p>Jerry:{{Jerry.gender | formatGender }}</p>
+</div>
+<script src='angular.min.js'></script>
+<script>
+    var app = angular.module('MyApp',[]);
+    app.controller('MyController',function($scope){
+        $scope.Tom = {
+            gender: 0
+        };
+        $scope.Jerry = {
+            gender: 1
+        };
+    });
+    app.filter('formatGender',function(){
+
+        return function(gender){
+            console.log(arguments);
+            return gender ? '男' : '女';
+        }
+    })
+</script>
+</body>
+</html>
