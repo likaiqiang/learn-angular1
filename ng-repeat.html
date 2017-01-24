@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app='MyApp'>
+    <div ng-controller='MyController'>
+        <p ng-repeat='(index,item) in arr'>{{item | filter1}}</p>
+    </div>
+    <script src='angular.min.js'></script>
+    <script>
+        var app = angular.module('MyApp',[]);
+        app.controller('MyController',function($scope){
+            $scope.arr = [
+                {name: 'likaiqiang'},
+                {name: 'lijianiu'},
+                {name: 'likaijun'}
+            ]
+        });
+        app.filter('filter1',function(){
+            return function(item){
+                console.log(item);
+                return item.name.toUpperCase()
+            }
+        })
+    </script>
+</body>
+</html>

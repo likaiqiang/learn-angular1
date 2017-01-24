@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+            box-sizing: border-box;
+        }
+        ul{
+            background-color: #ccc;
+            list-style: none;
+        }
+        ul>li{
+            line-height:100px;
+            display: table-cell;
+            width:1%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body ng-app='MyApp'>
+    <div ng-controller='MyController'>
+        <ul>
+            <li ng-click='select(index)' ng-repeat='(index,item) in tab.obj'>{{index}}</li>
+        </ul>
+        <div ng-switch on='tab.selectedTab'>
+            <!--<div ng-repeat='(index,item) in tab.obj' ng-switch-when='{{index}}'>container{{index}}</div>-->
+            <div ng-switch-when='0'>container1</div>
+            <div ng-switch-when='1'>container2</div>
+            <div ng-switch-when='2'>container3</div>
+        </div>
+    </div>
+    <script src='angular.min.js'></script>
+    <script>
+        var app = angular.module('MyApp',[]);
+        app.controller('MyController',function($scope){
+            $scope.tab = {
+                selectedTab: 0,
+                obj: [
+                    {
+                        text: 'tab1'
+                    },
+                    {
+                        text: 'tab2'
+                    },
+                    {
+                        text: 'tab3'
+                    }
+                ]
+            };
+            $scope.select = function(index){
+                debugger
+                $scope.tab.selectedTab = index;
+            }
+        })
+    </script>
+</body>
+</html>

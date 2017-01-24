@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .list-group-item.active{
+            color: red;
+        }
+    </style>
+</head>
+<body ng-app='MyApp'>
+    <div>
+        <ul class="list-group" ng-controller="ListCtrl">
+            <li ng-repeat="item in items" ng-class="{true:'list-group-item active', false: 'list-group-item'}[item==selectedItem]" ng-click="select(item)">
+                {{item.title}}
+            </li>
+        </ul>
+    </div>
+    <script src='angular.min.js'></script>
+    <script>
+        var app = angular.module('MyApp',[]);
+        app.controller('ListCtrl',function($scope){
+            $scope.items = [];
+
+            for (var i=0; i<10; i++) {
+                $scope.items.push({
+                    title:i
+                });
+            }
+
+            $scope.selectedItem = $scope.items[0];
+
+            $scope.select = function(item) {
+                $scope.selectedItem = item;
+            };
+        })
+    </script>
+</body>
+</html>
